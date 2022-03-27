@@ -15,8 +15,11 @@ const Header = () => {
         </Link>
       </h2>
       <div className="header__navbar">
-        <Link href="/" className="header__navitems header__navitems_active">
+        <Link href="/">
           <a className="header__navitems header__navitems_active">Home</a>
+        </Link>
+        <Link href="/mint">
+          <a className="header__navitems">Public Mint</a>
         </Link>
       </div>
       <div className="navbar__mobile" onClick={() => setShow(true)}>
@@ -33,8 +36,11 @@ const Header = () => {
           <Image src={Cross} alt="Close" />
         </div>
         <div className="navbar__mobile_items_container">
-          <Link href="/" className="navbar__mobile_items_item">
+          <Link href="/">
             <a className="navbar__mobile_items_item">Home</a>
+          </Link>
+          <Link href="/mint">
+            <a className="header__navitems">Public Mint</a>
           </Link>
         </div>
       </div>

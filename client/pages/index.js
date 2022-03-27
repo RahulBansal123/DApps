@@ -122,7 +122,8 @@ export default function Home() {
     } catch (err) {
       console.error(err);
     }
-  }, [checkIfAddressInWhitelist, getNumberOfWhitelisted]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /*
     renderButton: Returns a button based on the state of the dapp
