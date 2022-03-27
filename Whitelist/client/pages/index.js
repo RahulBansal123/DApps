@@ -157,7 +157,7 @@ export default function Home() {
       });
       connectWallet();
     }
-  }, [isWalletConnected]);
+  }, [isWalletConnected, connectWallet]);
 
   return (
     <div>
