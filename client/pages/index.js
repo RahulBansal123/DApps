@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Web3Modal from 'web3modal';
 import { providers, Contract } from 'ethers';
@@ -110,7 +110,7 @@ export default function Home() {
   /*
     connectWallet: Connects the MetaMask wallet
   */
-  const connectWallet = async () => {
+  const connectWallet = useCallback(async () => {
     try {
       // Get the provider from web3Modal, which in our case is MetaMask
       // When used for the first time, it prompts the user to connect their wallet
@@ -122,7 +122,7 @@ export default function Home() {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, []);
 
   /*
     renderButton: Returns a button based on the state of the dapp
