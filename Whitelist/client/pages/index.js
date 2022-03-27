@@ -68,7 +68,7 @@ export default function Home() {
    */
   const getNumberOfWhitelisted = async () => {
     try {
-      const provider = await getProviderOrSigner();
+      const provider = await getProviderOrSigner(true);
 
       const whitelistContract = new Contract(
         WHITELIST_CONTRACT_ADDRESS,
@@ -77,7 +77,8 @@ export default function Home() {
       );
 
       const _numberOfWhitelisted = await whitelistContract.totalWhitelisted();
-      setTotalWhitelisted(_numberOfWhitelisted);
+      const hexToNumber = parseInt(_numberOfWhitelisted._hex, 16);
+      setTotalWhitelisted(hexToNumber);
     } catch (err) {
       console.error(err);
     }
