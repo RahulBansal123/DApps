@@ -122,7 +122,7 @@ export default function Home() {
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [checkIfAddressInWhitelist, getNumberOfWhitelisted]);
 
   /*
     renderButton: Returns a button based on the state of the dapp
