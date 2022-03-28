@@ -21,6 +21,9 @@ const Header = () => {
         <Link href="/mint">
           <a className="header__navitems">Public Mint</a>
         </Link>
+        <Link href="/ico">
+          <a className="header__navitems">Initial Coin Offering</a>
+        </Link>
       </div>
       <div className="navbar__mobile" onClick={() => setShow(true)}>
         <Image src={Menu} alt="Menu" className="navbar__mobile_icons" />
@@ -41,6 +44,9 @@ const Header = () => {
           </Link>
           <Link href="/mint">
             <a className="header__navitems">Public Mint</a>
+          </Link>
+          <Link href="/ico">
+            <a className="header__navitems">Initial Coin Offering</a>
           </Link>
         </div>
       </div>

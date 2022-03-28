@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Web3Modal from 'web3modal';
 import { providers, Contract } from 'ethers';
 
 import Header from '../components/header';
-import { WHITELIST_CONTRACT_ADDRESS, abi } from '../constants';
+import { WHITELIST_CONTRACT_ADDRESS, whitelistAbi } from '../constants';
 
 export default function Home() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -26,7 +26,11 @@ export default function Home() {
     const { chainId } = await web3Provider.getNetwork();
 
     if (chainId !== 4) {
-      await provider.send('wallet_switchEthereumChain', [{ chainId: '0x4' }]);
+      try {
+        await provider.send('wallet_switchEthereumChain', [{ chainId: '0x4' }]);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     if (needSigner) {
@@ -41,25 +45,29 @@ export default function Home() {
   const addAddressToWhitelist = async () => {
     try {
       // We need a Signer here since this is a 'write' transaction.
+
       const signer = await getProviderOrSigner(true);
       // Create a new instance of the Contract with a Signer, which allows
       // update methods
       const whitelistContract = new Contract(
         WHITELIST_CONTRACT_ADDRESS,
-        abi,
+        whitelistAbi,
         signer
       );
       // call the addToWhitelisted from the contract
       const tx = await whitelistContract.addToWhitelisted();
+
       setIsLoading(true);
+
       // wait for the transaction to get mined
       await tx.wait();
-      setIsLoading(false);
       // get the updated number of addresses in the whitelist
       await getNumberOfWhitelisted();
       setHasJoinedWhitelist(true);
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -72,7 +80,7 @@ export default function Home() {
 
       const whitelistContract = new Contract(
         WHITELIST_CONTRACT_ADDRESS,
-        abi,
+        whitelistAbi,
         provider
       );
 
@@ -92,7 +100,7 @@ export default function Home() {
       const signer = await getProviderOrSigner(true);
       const whitelistContract = new Contract(
         WHITELIST_CONTRACT_ADDRESS,
-        abi,
+        whitelistAbi,
         signer
       );
 
@@ -110,20 +118,23 @@ export default function Home() {
   /*
     connectWallet: Connects the MetaMask wallet
   */
-  const connectWallet = useCallback(async () => {
+  const connectWallet = async () => {
     try {
-      // Get the provider from web3Modal, which in our case is MetaMask
       // When used for the first time, it prompts the user to connect their wallet
       await getProviderOrSigner();
-      setIsWalletConnected(true);
+
+      setIsLoading(true);
 
       checkIfAddressInWhitelist();
       getNumberOfWhitelisted();
+
+      setIsWalletConnected(true);
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   /*
     renderButton: Returns a button based on the state of the dapp
@@ -156,9 +167,10 @@ export default function Home() {
         providerOptions: {},
         disableInjectedProvider: false,
       });
-      connectWallet();
     }
-  }, [isWalletConnected, connectWallet]);
+    connectWallet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isWalletConnected]);
 
   return (
     <div>
