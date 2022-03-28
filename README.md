@@ -1,7 +1,7 @@
 <div align="center">
-  <h1 align="center">DApps</h1>
+  <h1 align="center">Whippp</h1>
   <p align="center">
-    This is my personal collection of DApps!
+    A complete DApp from adding the user to whitelist to allowing the NFT holders to create and vote on proposals
     <br />
     <br />
     <a href="https://github.com/RahulBansal123/DApps/issues">Report a Bug</a>
@@ -9,6 +9,15 @@
     <a href="https://github.com/RahulBansal123/DApps/issues">Request Feature or Improvements</a>
   </p>
 </div>
+
+<br/>
+
+<div>
+  <p><b>Hosted on Fleek at: https://dawn-disk-1192.on.fleek.co/</b></p>
+  <p><b>IPFS hash:</b> QmdowZa34wioL7GqJmKo8TTNqKVJnicx72hQtp4xWbrx4c</p>
+</div>
+
+<br/>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -30,7 +39,13 @@
 
 ## About The Project
 
-This project was started as my personal collection of DApps to kickstarter my blockchain knowledge. You can also take reference from these projects and can also try start building your own projects.
+Whippp is an open source decentralized application that provides the following features:
+<ol>
+    <br/><li><b>Whitelist</b>- Top 100 early supporters of the Whippp project stands a chance to get whitelisted.</li>
+    <br/><li><b>Mint NFT</b>- Users can mint the Whippped NFTs (only 200 are available) and the whitelisted users gets a 5 min presale period where they can can mint 1 guaranteed NFT per transaction.</li>
+    <br/><li><b>Initial Coin Offering</b>- Whippp token is launched with a max supply of 1,000,000 Whippp tokens. Whippped NFT holders are airdropped some of the Whippp tokens.</li>
+    <br/><li><b>DAO</b>- Each Whippped NFT holder can now either create a new proposal or vote on an existing one.</li>
+</ol>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -41,6 +56,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - [Next.js](https://nextjs.org/)
 - [Hardhat](https://hardhat.org/)
 - [Solidity](https://docs.soliditylang.org/en/v0.8.9/)
+- [Fleek](https://fleek.co/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
